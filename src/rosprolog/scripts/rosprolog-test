@@ -1,0 +1,30 @@
+#!/bin/sh
+
+PL_ARGS=$@
+PL_INIT_FILE=$(rospack find rosprolog)/src/__init__.pl
+ROSTEST_FILE=$(rospack find rosprolog)/src/rostest.pl
+
+# A POSIX variable
+OPTIND=1 # Reset in case getopts has been used previously in the shell.
+
+opts="report"
+
+while getopts "o:" opt; do
+    case "$opt" in
+    o)  opts="${opts},xunit('$OPTARG')"
+        ;;
+    esac
+done
+
+shift $((OPTIND-1))
+
+[ "${1:-}" = "--" ] && shift
+
+for target in "$@"
+do
+    echo "Running tests for target: $target..."
+    /usr/bin/swipl -q \
+        -f ${PL_INIT_FILE} \
+        -g "ensure_loaded('${PL_INIT_FILE}'),ensure_loaded('${ROSTEST_FILE}'),ros_logger_level(warn)" \
+        -t "setup_call_cleanup(true, rospl_run_tests('${target}',[${opts}]), halt)"
+done

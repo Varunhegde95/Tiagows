@@ -1,0 +1,6 @@
+Symlinking /home/varun/tiago_public_ws/devel/lib/libslam_gmapping_nodelet.so
+Symlinking /home/varun/tiago_public_ws/devel/lib/pkgconfig/gmapping.pc
+Symlinking /home/varun/tiago_public_ws/devel/lib/gmapping/slam_gmapping_replay
+Symlinking /home/varun/tiago_public_ws/devel/lib/gmapping/slam_gmapping
+Symlinking /home/varun/tiago_public_ws/devel/share/gmapping/cmake/gmappingConfig-version.cmake
+Symlinking /home/varun/tiago_public_ws/devel/share/gmapping/cmake/gmappingConfig.cmake
